@@ -1,0 +1,22 @@
+
+def forks = Math.max(2, (int) (Runtime.runtime.availableProcessors() / 2))
+
+
+allprojects {
+    tasks.withType(Test) {
+          jvmArgs "-Xmx512m -XX:MaxPermSize=512m"
+
+          if (!project.hasProperty('skipParallelTests')) {
+              maxParallelForks = forks
+              logger.info("Configured tests to run in parallel with $forks forks.")
+          } else {
+              logger.info("Skipping running tests in parallel.")
+          }
+    }
+
+//    gradle.afterProject {
+//        if (project.tasks.findByName("test") == null) {
+//            throw new Exception("Tests are required.  The test task does not exist!")
+//        }
+//    }
+}

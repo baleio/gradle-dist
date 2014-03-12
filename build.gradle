@@ -1,0 +1,104 @@
+// Base plugin adds configuration
+// support and build<Configuration>
+// and upload<Configuration> tasks.
+apply plugin: "base"
+apply plugin: "maven"
+ 
+// Version is the version of the
+// company Gradle. This can be independent
+// of the Gradle version.
+version = "1.11.1"
+group = "com.thpii.gradle"
+ 
+ext {
+    // Gradle version to use as template for
+    // the custom Gradle distribution.
+    gradleVersion = "1.11"
+}
+ 
+// Extra configuration to store
+// company Gradle ZIP artifact and
+// use for uploading.
+configurations {
+    companyGradle   
+}
+
+task wrapper(type: Wrapper) {
+    distributionUrl = "http://services.gradle.org/distributions/gradle-$project.gradleVersion-bin.zip"
+}
+ 
+task downloadGradle(type: DownloadGradle) {
+    description "Download Gradle version from Gradle distributions website"
+ 
+    gradleVersion project.gradleVersion
+    destinationDir file("$buildDir/gradle-downloads")
+}
+ 
+task companyGradleZip(type: Zip, dependsOn: downloadGradle) {
+    description "Add extra files to company Gradle distribution"
+ 
+    // Name for company Gradle ZIP distribution.
+    baseName = "thpii-gradle"
+    classifier = "bin"
+ 
+    from zipTree(downloadGradle.destinationFile)
+    into("${downloadGradle.distributionNameBase}") {
+        into("init.d") {
+            from "src/main/scripts/init.d"
+        }
+        // We can do extra stuff here
+        // to add to the company Gradle
+        // distribution ZIP file.
+    }   
+}
+ 
+artifacts {
+    companyGradle companyGradleZip
+}
+
+// Configure upload task for company
+// Gradle distribution ZIP.
+uploadCompanyGradle {
+    repositories {
+        //add project.repositories.fileRepo
+        mavenDeployer {
+            repository(url: "$repoUrl") {
+                 authentication(userName: "$repoUsername", password: "$repoPassword")
+       	    }
+        }
+    }
+}
+ 
+ 
+class DownloadGradle extends DefaultTask {
+    @Input
+    String gradleVersion
+ 
+    @Input
+    File destinationDir
+ 
+    @Input
+    String gradleDownloadBase = "http://services.gradle.org/distributions"
+ 
+    @TaskAction
+    doDownloadGradle() {
+        destinationFile.bytes = new URL(downloadUrl).bytes
+    }
+ 
+    String getDownloadUrl() {
+        "$gradleDownloadBase/$downloadFileName"
+    }
+ 
+    String getDistributionNameBase() {
+        "gradle-$gradleVersion"
+    }
+ 
+    String getDownloadFileName() {
+        "$distributionNameBase-bin.zip"
+    }
+ 
+    @OutputFile
+    File getDestinationFile() {
+        new File(destinationDir, downloadFileName)
+    }
+}

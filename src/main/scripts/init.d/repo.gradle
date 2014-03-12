@@ -1,0 +1,22 @@
+import org.gradle.api.artifacts.repositories.ArtifactRepository
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository
+
+
+def companyRepoUrl = new URI("http://myserver.com/repo/")
+
+allprojects {
+    repositories { 
+       def mavenLocalUrl = mavenLocal().url
+       
+        all { ArtifactRepository repo ->
+            if ((repo instanceof MavenArtifactRepository) && (repo.url == companyRepoUrl || repo.url == mavenLocalUrl)) {
+                logger.debug "Repository $repo.url is being used."
+            }  else {
+                logger.warn "Repository $repo.url removed.  Only $companyRepoUrl is allowed"
+                remove repo
+            }
+        }
+
+        maven { url companyRepoUrl }
+    }
+}

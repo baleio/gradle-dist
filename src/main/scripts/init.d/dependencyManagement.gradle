@@ -1,0 +1,530 @@
+
+
+allprojects {
+    ext {
+        activemqVersion = "5.9.0"
+        akkaVersion = "2.3.0"
+        antVersion = "1.9.3"
+        asmVersion = "4.2"
+        aspectjVersion = "1.7.4"
+        avroVersion = "1.7.6"
+        batikVersion = "1.6-1"
+        bouncycastleVersion = "1.50"
+        camelVersion = "2.12.3"
+        cglibVersion = "3.1"
+        cumcumberVersion = "1.1.5"
+        cxfVersion = "2.7.10"
+        freemarkerVersion = "2.3.20"
+        groovyVersion = "2.2.2"
+        guiceVersion = "4.0-beta"
+        hibernateVersion = "4.3.4.Final"
+        httpComponentsVersion = "4.3.3"
+        jacksonVersion = "2.3.2"
+        jacksonOneVersion = "1.9.12"
+        jencksVersion = "2.2"
+        jerseyOneVersion = "1.18.1"
+        jerseyVersion = "2.6"
+        jettyVersion = "9.1.2.v20140210"
+        junitVersion = "4.11"
+        luceneVersion = "4.7.0"
+        nettyVersion = "4.0.17.Final"
+        powermockVersion = "1.5.4"
+        scalaVersoin = "2.10.3"
+        slf4jVersion = "1.7.6"
+        springVersion = "4.0.2.RELEASE"
+        springIntegrationVersion = "3.0.1.RELEASE"
+        springSecurityVersion = "3.2.1.RELEASE"
+        springSecurityOauthVersion = "1.0.5.RELEASE"
+        testngVersion = "6.8.8"
+        tomcatVersion = "8.0.3"
+        yammerMetricsVersion = "2.2.0"
+    }
+
+    configurations {
+        all {
+            resolutionStrategy {
+                force group: "aopalliance", name: "aopalliance", version: "1.0"
+
+                force group: "antlr", name: "antlr", version: "2.7.7"
+                force group: "antlr", name: "stringtemplate", version: "3.2.1"
+                
+                force group: "asm", name: "asm", version: "3.3.1"
+                force group: "asm", name: "asm-attrs", version: "2.2.3"
+                force group: "asm", name: "asm-commons", version: "3.3.1"
+                force group: "asm", name: "asm-util", version: "3.3.1"
+                
+                force group: "batik", name: "batik", version: "1.5"
+                force group: "batik", name: "batik-brdige", version: "$batikVersion"
+                force group: "batik", name: "batik-css", version: "$batikVersion"
+                force group: "batik", name: "batik-dom", version: "$batikVersion"
+                force group: "batik", name: "batik-ext", version: "$batikVersion"
+                force group: "batik", name: "batik-parser", version: "$batikVersion"
+                force group: "batik", name: "batik-rasterizer", version: "$batikVersion"
+                force group: "batik", name: "batik-script", version: "$batikVersion"
+                force group: "batik", name: "batik-transcoder", version: "$batikVersion"
+                force group: "batik", name: "batik-util", version: "$batikVersion"
+
+                force group: "bouncycastle", name: "bcmail-jdk14", version: "138"
+                force group: "bouncycastle", name: "bcprov-jdk14", version: "140"
+                force group: "bouncycastle", name: "bctsp-jdk14", version: "138"
+                
+                force group: "c3p0", name: "c3p0", version: "0.9.1.2"
+                
+                force group: "cglib", name: "cglib", version: "$cglibVersion"
+                force group: "cglib", name: "cglib-nodep", version: "$cglibVersion"
+                
+                force group: "com.amazonaws", name: "aws-java-sdk", version: "1.7.3"
+                force group: "com.codahale.metrics", name: "metrics-core", version: "3.0.2"
+
+                force group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.core", name: "jackson-core", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.dataformat", name: "jackson-dataformat-xml", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.dataformat", name: "jackson-dataformat-yaml", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-guava", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-hppc", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-joda", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-json-org", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-jsr353", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.jaxrs", name: "jackson-jaxrs-base", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.jaxrs", name: "jackson-jaxrs-json-provider", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.jaxrs", name: "jackson-jaxrs-smile-provider", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.jaxrs", name: "jackson-jaxrs-xml-provider", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.module", name: "jackson-module-jaxb-annotations", version: "$jacksonVersion"
+                force group: "com.fasterxml.jackson.module", name: "jackson-module-afterburner", version: "$jacksonVersion"
+                
+                force group: "com.github.slugify", name: "slugify", version: "2.1.2" 
+                               
+                force group: "com.google.collections", name: "google-collections", version: "1.0"
+                force group: "com.google.guava", name: "guava", version: "16.0.1"
+
+                force group: "com.google.inject", name: "guice", version: "$guiceVersion"
+                force group: "com.google.inject.extensions", name: "guice-assistedinject", version: "$guiceVersion"
+                force group: "com.google.inject.extensions", name: "guice-jmx", version: "$guiceVersion"
+                force group: "com.google.inject.extensions", name: "guice-jndi", version: "$guiceVersion"
+                force group: "com.google.inject.extensions", name: "guice-multibindings", version: "$guiceVersion"
+                force group: "com.google.inject.extensions", name: "guice-servlet", version: "$guiceVersion"
+
+                force group: "com.google.code.findbugs", name: "jsr305", version: "2.0.3"
+    
+                force group: "com.googlecode.json-simple", name: "json-simple", version: "1.1.1"
+                force group: "com.googlecode.pojosr", name: "de.kalpatec.pojosr.framework", version: "0.2.1"
+               
+                force group: "com.hazelcast", name: "hazelcast", version: "3.1.6"
+                
+                force group: "com.jcraft", name: "jsch", version: "0.1.50"
+                force group: "com.lowagie", name: "itext", version: "4.2.1"
+                force group: "com.mchange", name: "c3p0", version: "0.9.2.1"                
+                force group: "com.mindprod", name: "base64", version: "1.6"
+                force group: "com.mockrunner", name: "mockrunner-jdbc", version: "1.0.0"
+                force group: "com.rabbitmq", name: "amqp-client", version: "3.2.4"
+
+                force group: "com.sun.jersey", name: "jersey-client", version: "$jerseyOneVersion"
+                force group: "com.sun.jersey", name: "jersey-core", version: "$jerseyOneVersion"
+                force group: "com.sun.jersey", name: "jersey-server", version: "$jerseyOneVersion"
+                force group: "com.sun.jersey", name: "jersey-servlet", version: "$jerseyOneVersion"
+
+                force group: "com.sun.jersey.contribs", name: "jersey-guice", version: "$jerseyOneVersion"
+                force group: "com.sun.jersey.contribs", name: "jersey-multipart", version: "$jerseyOneVersion"
+                force group: "com.sun.jersey.contribs", name: "jersey-spring", version: "$jerseyOneVersion"
+
+                force group: "com.sun.jersey.contribs.jersey-oauth", name: "oauth-client", version: "$jerseyOneVersion"
+                force group: "com.sun.jersey.contribs.jersey-oauth", name: "oauth-signature", version: "$jerseyOneVersion"
+                force group: "com.sun.jersey.contribs.jersey-oauth", name: "oauth-server", version: "$jerseyOneVersion"
+
+                force group: "com.sun.xml.bind", name: "jaxb-impl", version: "2.2.8-b01"
+                force group: "com.sun.xml.bind", name: "jaxb-xjc", version: "2.2.8-b01"
+
+                force group: "com.thoughtworks.paranamer", name: "paranamer", version: "2.6"
+                force group: "com.thoughtworks.xstream", name: "xstream", version: "1.4.7"
+
+                force group: "com.qas", name: "proweb", version: "4.0"
+
+                force group: "com.yammer.metrics", name: "metrics-annotation", version: "$yammerMetricsVersion"
+                force group: "com.yammer.metrics", name: "metrics-core", version: "$yammerMetricsVersion"
+                force group: "com.yammer.metrics", name: "metrics-ehcache", version: "$yammerMetricsVersion"
+                force group: "com.yammer.metrics", name: "metrics-guice", version: "$yammerMetricsVersion"
+                force group: "com.yammer.metrics", name: "metrics-jersey", version: "$yammerMetricsVersion"
+                force group: "com.yammer.metrics", name: "metrics-servlet", version: "$yammerMetricsVersion"
+                force group: "com.yammer.metrics", name: "metrics-spring", version: "$yammerMetricsVersion"
+                force group: "com.yammer.metrics", name: "metrics-web", version: "$yammerMetricsVersion"
+
+                force group: "commons-beanutils", name: "commons-beanutils", version: "1.9.1"
+                force group: "commons-cli", name: "commons-cli", version: "1.2"
+                force group: "commons-codec", name: "commons-codec", version: "1.9"
+                force group: "commons-collections", name: "commons-collections", version: "3.2.1"
+                force group: "commons-daemon", name: "commons-daemon", version: "1.0.15"
+                force group: "commons-dbcp", name: "commons-dbcp", version: "1.4"
+                force group: "commons-digester", name: "commons-digester", version: "2.1"
+                force group: "commons-fileupload", name: "commons-fileupload", version:"1.3.1"
+                force group: "commons-httpclient", name: "commons-httpclient", version: "3.1"
+                force group: "commons-io", name: "commons-io", version: "2.4"
+                force group: "commons-lang", name: "commons-lang", version: "2.6"
+                force group: "commons-logging", name: "commons-logging", version: "1.1.3"
+                force group: "commons-logging", name: "commons-logging-api", version: "1.1"
+                force group: "commons-pool", name: "commons-pool", version: "1.6"
+                force group: "commons-net", name: "commons-net", version: "3.3"
+
+                force group: "dom4j", name: "dom4j", version: "1.6.1"
+                force group: "freemarker", name: "freemarker", version: "2.3.15"
+
+                force group: "info.cukes", name: "cucumber-android", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-clojure", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-core", version: "$cucumberVersion"                
+                force group: "info.cukes", name: "cucumber-groovy", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-guice", version: "$cucumberVersion"                
+                force group: "info.cukes", name: "cucumber-ioke", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-java", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-jruby", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-junit", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-jython", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-needle", version: "$cucumberVersion"                
+                force group: "info.cukes", name: "cucumber-openejb", version: "$cucumberVersion"                
+                force group: "info.cukes", name: "cucumber-picocontainer", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-scala", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-spring", version: "$cucumberVersion"
+                force group: "info.cukes", name: "cucumber-weld", version: "$cucumberVersion"                
+
+                force group: "io.netty", name: "netty-all", version: "$nettyVersion"
+                force group: "io.netty", name: "netty-example", version: "$nettyVersion"
+                force group: "io.netty", name: "netty-handler", version: "$nettyVersion"
+                force group: "io.netty", name: "netty-codec", version: "$nettyVersion"
+                force group: "io.netty", name: "netty-transport", version: "$nettyVersion"
+                force group: "io.netty", name: "netty-buffer", version: "$nettyVersion"
+                force group: "io.netty", name: "netty-common", version: "$nettyVersion"
+
+                force group: "javassist", name: "javassist", version: "3.12.1.GA"
+                
+                force group: "javax.activation", name: "activation", version: "1.1.1"
+                
+                force group: "javax.annotation", name: "jsr250-api", version: "1.0" 
+                force group: "javax.annotation", name: "javax.annotation-api", version: "1.2"
+                
+                force group: "javax.cache", name: "cache-api", version: "1.0.0-RC1"
+                
+                force group: "javax.el", name: "el-api", version: "2.2"
+                force group: "javax.el", name: "javax.el-api", version: "3.0.0"
+                
+                force group: "javax.inject", name: "javax.inject", version: "1"
+                
+                force group: "javax.j2ee", name: "j2ee", version: "1.5"
+                force group: "javax.jms", name: "jms", version: "1.1"
+                
+                force group: "javax.mail", name: "mail", version: "1.4.7" 
+                force group: "javax.mail", name: "javax.mail-api", version: "1.5.1"
+                
+                force group: "javax.persistence", name: "persistence-api", version: "1.0.2"
+                force group: "javax.rules", name: "jsr94", version: "1.1"
+                
+                force group: "javax.servlet", name: "servlet-api", version: "2.5"
+                force group: "javax.servlet", name: "javax.servlet-api", version: "3.1.0"
+                force group: "javax.servlet", name: "jstl", version: "1.2"
+                force group: "javax.servlet.jsp", name: "jsp-api", version: "2.2.1"
+                force group: "javax.servlet.jsp.jstl", name: "jstl-api", version: "1.2"
+                
+                force group: "javax.transaction", name: "jta", version: "1.1"
+                force group: "javax.validation", name: "validation-api", version: "1.1.0.Final"
+                
+                force group: "javax.ws.rs", name: "jsr311-api", version: "1.1.1"
+                force group: "javax.ws.rs", name: "javax.ws.rs-api", version: "2.0"
+                
+                force group: "javax.xml", name: "jsr173", version: "1.0"
+                force group: "javax.xml.bind", name: "jaxb-api", version: "2.2.11"
+                force group: "javax.xml.stream", name: "stax-api", version: "1.0-2"
+                
+                force group: "jaxen", name: "jaxen", version: "1.1.4"
+                force group: "jline", name: "jline", version: "2.11"
+                force group: "joda-time", name: "joda-time", version: "2.3"
+                force group: "junit", name: "junit", version: "4.11"
+                force group: "jxl", name: "jxl", version: "2.6.10"
+                force group: "log4j", name: "log4j", version: "1.2.17"
+                force group: "log4j", name: "apache-log4j-extras", version: "1.2.17"
+                force group: "mysql", name: "mysql-connector-java", version: "5.1.29"
+                force group: "net.htmlparser.jericho", name: "jericho-html", version: "3.3"
+                force group: "net.sf.ehcache", name: "ehcache", version: "2.8.1"
+                force group: "net.sf.flexjson", name: "flexjson", version: "3.2"
+                force group: "net.sourceforge.saxon", name: "saxon", version: "9.1.0.8"
+                force group: "ognl", name: "ognl", version: "3.0.8"
+                force group: "opencsv", name: "opencsv", version: "1.8"
+                
+                force group: "org.antlr", name: "antlr", version: "3.5.1"
+                force group: "org.antlr", name: "stringtemplate", version: "4.0.2"
+
+                force group: "org.apache", name: "jakarta-oro", version: "2.0.8"
+
+                force group: "org.apache.activemq", name: "activemq-all", version: "$activemqVersion"
+                force group: "org.apache.activemq", name: "activemq-camel", version: "$activemqVersion"
+                force group: "org.apache.activemq", name: "activemq-pool", version: "$activemqVersion"
+                
+                force group: "org.apache.ant", name: "ant", version: "$antVersion"
+                force group: "org.apache.ant", name: "ant-launcher", version: "$antVersion"
+
+                force group: "org.apache.avro", name: "avro", version: "$avroVersion"
+                force group: "org.apache.avro", name: "avro-ipc", version: "$avroVersion"
+
+                force group: "org.apache.bsf", name: "bsf-all", version: "3.0-beta3"
+                
+                force group: "org.apache.camel", name: "camel-aws", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-bean-validator", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-bindy", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-cache", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-core", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-core-xml", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-csv", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-cxf", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-cxf-transport", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-dozer", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-eclipse", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-ftp", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-http4", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-jackson", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-jaxb", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-jdbc", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-jms", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-jpa", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-lucene", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-mail", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-mongodb", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-quartz", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-rabbitmq", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-scala", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-script", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-smpp", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-solr", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-spring", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-test", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-testng", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-velocity", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-web", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-websocket", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-xmljson", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-xmpp", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-xstream", version: "$camelVersion"
+                force group: "org.apache.camel", name: "camel-zookeeper", version: "$camelVersion"
+
+                force group: "org.apache.commons", name: "commons-lang3", version: "3.3"
+                force group: "org.apache.commons", name: "commons-math3", version: "3.2"
+
+                force group: "org.apache.cxf", name: "cxf-api", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-bundle", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-bindings-soap", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-bindings-xml", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-core", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-databinding-jaxb", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-frontend-jaxrs", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-frontend-jaxws", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-frontend-simple", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-rs-extension-providers", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-rs-extension-search", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-rs-security-cors", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-rs-security-oauth2", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-transports-http", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-transports-http-jetty", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-rt-ws-addr", version: "$cxfVersion"
+                force group: "org.apache.cxf", name: "cxf-testutils", version: "$cxfVersion"
+                force group: "org.apache.cxf.systests", name: "cxf-systests-jaxrs", version: "$cxfVersion"
+                
+                force group: "org.apache.geronimo.specs", name: "geronimo-annotation_1.0_spec", version: "1.1.1"
+                force group: "org.apache.geronimo.specs", name: "geronimo-j2ee-management_1.1_spec", version: "1.0.1"
+                force group: "org.apache.geronimo.specs", name: "geronimo-jaspic_1.0_spec", version: "1.1"
+                force group: "org.apache.geronimo.specs", name: "geronimo-jms_1.1_spec", version: "1.1.1"
+                force group: "org.apache.geronimo.specs", name: "geronimo-jta_1.0.1B_spec", version: "1.1.1"
+                force group: "org.apache.geronimo.specs", name: "geronimo-jta_1.1_spec", version: "1.1.1"
+                force group: "org.apache.geronimo.specs", name: "geronimo-servlet_2.5_spec", version: "1.2"
+                force group: "org.apache.geronimo.specs", name: "geronimo-servlet_3.0_spec", version: "1.0"
+                force group: "org.apache.geronimo.specs", name: "geronimo-stax-api_1.0_spec", version: "1.0.1"
+                
+                force group: "org.apache.httpcomponents", name: "httpclient", version: "$httpComponentsVersion"
+                force group: "org.apache.httpcomponents", name: "httpclient-cache", version: "$httpComponentsVersion"
+                force group: "org.apache.httpcomponents", name: "httpcore", version: "4.3.2"
+                force group: "org.apache.httpcomponents", name: "httpmime", version: "$httpComponentsVersion"
+
+                force group: "org.apache.logging.log4j", name: "log4j", version: "2.0-rc1"
+
+                force group: "org.apache.lucene", name: "lucene-analyzers-common", version: "$luceneVersion"
+                force group: "org.apache.lucene", name: "lucene-core", version: "$luceneVersion"
+
+                force group: "org.apache.tomcat", name: "tomcat", version: "$tomcatVersion"
+
+                force group: "org.apache.xbean", name: "xbean-spring", version: "3.16"
+                force group: "org.apache.xmlbeans", name: "xmlbeans", version: "2.5.0"
+
+                force group: "org.aspectj", name: "aspectjrt", version: "$aspectjVersion"
+                force group: "org.aspectj", name: "aspectjtools", version: "$aspectjVersion"
+                force group: "org.aspectj", name: "aspectjweaver", version: "$aspectjVersion"
+                 
+                force group: "org.bouncycastle", name: "bcmail-jdk14", version: "$bouncycastleVersion"
+                force group: "org.bouncycastle", name: "bcpg-jdk14", version: "$bouncycastleVersion"             
+                force group: "org.bouncycastle", name: "bcpkix-jdk14", version: "$bouncycastleVersion"
+                force group: "org.bouncycastle", name: "bcprov-jdk14", version: "$bouncycastleVersion"
+                force group: "org.bouncycastle", name: "bcprov-ext-jdk14", version: "$bouncycastleVersion"
+                force group: "org.bouncycastle", name: "bcmail-jdk15on", version: "$bouncycastleVersion"
+                force group: "org.bouncycastle", name: "bcpg-jdk15on", version: "$bouncycastleVersion"
+                force group: "org.bouncycastle", name: "bcpkix-jdk145on", version: "$bouncycastleVersion"
+                force group: "org.bouncycastle", name: "bcprov-jdk15on", version: "$bouncycastleVersion"
+                force group: "org.bouncycastle", name: "bcprov-ext-jdk15on", version: "$bouncycastleVersion"
+
+                force group: "org.codehaus.enunciate", name: "enunciate-core-annotations", version: "1.28"
+
+                force group: "org.codehaus.groovy", name: "groovy", version: "2.2.2"
+                force group: "org.codehaus.groovy", name: "groovy-all", version: "2.2.2"
+
+                force group: "org.codehaus.jackson", name: "jackson-core-asl", version: "$jacksonOneVersion"
+                force group: "org.codehaus.jackson", name: "jackson-jaxrs", version: "$jacksonOneVersion"
+                force group: "org.codehaus.jackson", name: "jackson-mapper-asl", version: "$jacksonOneVersion"
+                force group: "org.codehaus.jackson", name: "jackson-xc", version: "$jacksonOneVersion"
+
+                force group: "org.codehaus.jettison", name: "jettison", version: "1.3.5"
+
+                force group: "org.easymock", name: "easymock", version: "3.2"
+
+                force group: "org.eclipse.jetty", name: "jetty-ant", version: "$jettyVersion"
+                force group: "org.eclipse.jetty", name: "jetty-distribution", version: "$jettyVersion"
+                force group: "org.eclipse.jetty", name: "jetty-server", version: "$jettyVersion"
+
+                force group: "org.eclipse.persistence", name: "eclipselink", version: "2.5.1"
+                force group: "org.eclipse.persistence", name: "javax.persistence", version: "2.1.0"
+
+                force group: "org.freemarker", name: "freemarker", version: "$freemarkerVersion"
+                force group: "org.freemarker", name: "freemarker-gae", version: "$freemarkerVersion"
+
+                force group: "org.glassfish.jersey.connector", name: "jersey-jetty-connector", version: "$jerseyVersion"
+
+                force group: "org.glassfish.jersey.core", name: "jersey-client", version: "$jerseyVersion"
+                force group: "org.glassfish.jersey.core", name: "jersey-common", version: "$jerseyVersion"
+                force group: "org.glassfish.jersey.core", name: "jersey-server", version: "$jerseyVersion"
+
+                force group: "org.glassfish.jersey.ext", name: "jersey-bean-validation", version: "$jerseyVersion"
+                force group: "org.glassfish.jersey.media", name: "jersey-declarative-linking", version: "$jerseyVersion"                
+                force group: "org.glassfish.jersey.media", name: "jersey-spring3", version: "$jerseyVersion"
+
+                force group: "org.glassfish.jersey.media", name: "jersey-media-json", version: "$jerseyVersion"
+                force group: "org.glassfish.jersey.media", name: "jersey-media-json-jackson", version: "$jerseyVersion"
+                force group: "org.glassfish.jersey.media", name: "jersey-media-json-jettison", version: "$jerseyVersion"
+                force group: "org.glassfish.jersey.media", name: "jersey-media-multipart", version: "$jerseyVersion"
+
+                force group: "org.glassfish.jersey.security", name: "oauth2-client", version: "$jerseyVersion"
+
+
+                force group: "org.hibernate", name: "hibernate-c3p0", version: "$hibernateVersion"
+                force group: "org.hibernate", name: "hibernate-core", version: "$hibernateVersion"
+                force group: "org.hibernate", name: "hibernate-ehcache", version: "$hibernateVersion"
+                force group: "org.hibernate", name: "hibernate-entitymanager", version: "$hibernateVersion"
+                force group: "org.hibernate", name: "hibernate-search", version: "4.5.0.Final"
+                force group: "org.hibernate", name: "hibernate-validator", version: "5.1.0.Final"
+                
+                force group: "org.hsqldb", name: "hsqldb", version: "2.3.2"
+
+                force group: "org.jdom", name: "jdom", version: "2.0.2"
+
+                force group: "org.jencks", name: "jencks", version: "$jencksVersion"
+                force group: "org.jencks", name: "jencks-amqpool", version: "$jencksVersion"
+
+                force group: "org.json4s", name: "json4s-jackson_2.10", version: "3.2.7"
+                force group: "org.json4s", name: "json4s-native_2.10", version: "3.2.7"
+                
+                force group: "org.jvnet.annox", name: "annox", version: "0.5.1"
+
+                force group: "org.mortbay.jetty", name: "jetty", version: "6.1.26"
+                force group: "org.mortbay.jetty", name: "jetty-management", version: "6.1.26"
+                
+                force group: "org.mybatis", name: "mybatis", version:"3.2.5"
+                force group: "org.mybatis", name: "mybatis-ehcache", version:"1.0.0"
+                force group: "org.mybatis", name: "mybatis-guice", version:"3.5"
+                force group: "org.mybatis", name: "mybatis-spring", version:"1.2.2"
+
+                force group: "org.mockito", name: "mockito-all", version: "1.9.5"
+                force group: "org.mongodb", name: "mongo-java-driver", version: "2.11.4"                
+                force group: "org.mvel", name: "mvel2", version: "2.1.9.Final"
+                force group: "org.objenesis", name: "objenesis", version: "2.1"                
+                force group: "org.ostermiller", name: "utils", version: "1.07.00"
+                
+                force group: "org.ow2.asm", name: "asm", version: "$asmVersion"
+                force group: "org.ow2.asm", name: "asm-debug-all", version: "$asmVersion"
+                force group: "org.ow2.asm", name: "asm-all", version: "$asmVersion"
+                force group: "org.ow2.asm", name: "asm-xml", version: "$asmVersion"
+                force group: "org.ow2.asm", name: "asm-util", version: "$asmVersion"
+                force group: "org.ow2.asm", name: "asm-tree", version: "$asmVersion"
+                force group: "org.ow2.asm", name: "asm-commons", version: "$asmVersion"
+                force group: "org.ow2.asm", name: "asm-analysis", version: "$asmVersion"
+
+                force group: "org.powermock", name: "powermock-api", version: "$powermockVersion"
+                force group: "org.powermock", name: "powermock-core", version: "$powermockVersion"
+                force group: "org.powermock", name: "powermock-module-junit4", version: "$powermockVersion"
+                force group: "org.powermock", name: "powermock-module-junit4-common", version: "$powermockVersion"
+                force group: "org.powermock", name: "powermock-module-testng", version: "$powermockVersion"
+                force group: "org.powermock", name: "powermock-module-testng-common", version: "$powermockVersion"
+                force group: "org.powermock", name: "powermock-easymock-release-full", version: "$powermockVersion"
+                force group: "org.powermock", name: "powermock-mockito-release-full", version: "$powermockVersion"
+
+                force group: "org.quartz-scheduler", name: "quartz", version: "2.2.1"
+
+                force group: "org.slf4j", name: "jcl-over-slf4j", version: "$slf4jVersion"
+                force group: "org.slf4j", name: "slf4j-api", version: "$slf4jVersion"
+                force group: "org.slf4j", name: "slf4j-log4j12", version: "$slf4jVersion"
+
+                force group: "org.springframework", name: "spring-aop", version: "$springVersion"
+                force group: "org.springframework", name: "spring-asm", version: "$springVersion"
+                force group: "org.springframework", name: "spring-aspects", version: "$springVersion"
+                force group: "org.springframework", name: "spring-beans", version: "$springVersion"
+                force group: "org.springframework", name: "spring-context", version: "$springVersion"
+                force group: "org.springframework", name: "spring-context-support", version: "$springVersion"
+                force group: "org.springframework", name: "spring-core", version: "$springVersion"
+                force group: "org.springframework", name: "spring-expression", version: "$springVersion"
+                force group: "org.springframework", name: "spring-instrument", version: "$springVersion"
+                force group: "org.springframework", name: "spring-instrument-tomcat", version: "$springVersion"
+                force group: "org.springframework", name: "spring-jdbc", version: "$springVersion"
+                force group: "org.springframework", name: "spring-jms", version: "$springVersion"
+                force group: "org.springframework", name: "spring-orm", version: "$springVersion"
+                force group: "org.springframework", name: "spring-oxm", version: "$springVersion"
+                force group: "org.springframework", name: "spring-test", version: "$springVersion"
+                force group: "org.springframework", name: "spring-tx", version: "$springVersion"
+                force group: "org.springframework", name: "spring-web", version: "$springVersion"
+                force group: "org.springframework", name: "spring-webmvc", version: "$springVersion"
+
+                force group: "org.springframework.integration", name: "spring-integration-core", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-event", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-file", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-http", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-jms", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-mail", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-rmi", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-security", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-stream", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-ws", version: "$springIntegrationVersion"
+                force group: "org.springframework.integration", name: "spring-integration-xml", version: "$springIntegrationVersion"
+
+                force group: "org.springframework.security", name: "spring-security-acl", version: "$springSecurityVersion"
+                force group: "org.springframework.security", name: "spring-security-cas", version: "$springSecurityVersion"
+                force group: "org.springframework.security", name: "spring-security-config", version: "$springSecurityVersion"
+                force group: "org.springframework.security", name: "spring-security-core", version: "$springSecurityVersion"
+                force group: "org.springframework.security", name: "spring-security-crypto", version: "$springSecurityVersion"
+                force group: "org.springframework.security", name: "spring-security-ldap", version: "$springSecurityVersion"
+                force group: "org.springframework.security", name: "spring-security-openid", version: "$springSecurityVersion"
+                force group: "org.springframework.security", name: "spring-security-web", version: "$springSecurityVersion"
+                
+                force group: "org.springframework.security.oauth", name: "spring-security-oauth2", version: "$springSecurityOauthVersion"
+                force group: "org.springframework.security.oauth", name: "spring-security-oauth2", version: "$springSecurityOauthVersion"
+
+                force group: "org.testng", name: "testng", version: "6.8.8"
+                force group: "org.yaml", name: "snakeyaml", version: "1.13"           
+
+                force group: "stax", name: "stax-api", version: "1.0.1"
+                force group: "taglibs", name: "standard", version: "1.1.2"
+
+                force group: "xalan", name: "xalan", version: "2.7.1"
+
+                force group: "xerces", name: "xerces", version: "2.4.0"
+                force group: "xerces", name: "xercesImpl", version: "2.11.0"
+
+                force group: "xml-apis", name: "xml-apis", version: "1.4.01"
+                force group: "xmlunit", name: "xmlunit", version: "1.5"
+                force group: "xom", name: "xom", version: "1.2.5"
+                force group: "xpp3_min", name: "xpp3_min", version: "1.1.4c"
+                
+            }
+        }
+    }
+
+}
+
