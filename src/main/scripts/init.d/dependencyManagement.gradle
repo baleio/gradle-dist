@@ -29,12 +29,14 @@ allprojects {
         luceneVersion = "4.7.0"
         nettyVersion = "4.0.17.Final"
         powermockVersion = "1.5.4"
-        scalaVersoin = "2.10.3"
+        scalaBaseVersion = "2.10"
+        scalaVersion = "2.10.3"
         slf4jVersion = "1.7.6"
         springVersion = "4.0.2.RELEASE"
         springIntegrationVersion = "3.0.1.RELEASE"
         springSecurityVersion = "3.2.1.RELEASE"
         springSecurityOauthVersion = "1.0.5.RELEASE"
+        swaggerVersion = "1.3.2"
         testngVersion = "6.8.8"
         tomcatVersion = "8.0.3"
         yammerMetricsVersion = "2.2.0"
@@ -139,6 +141,15 @@ allprojects {
                 force group: "com.thoughtworks.xstream", name: "xstream", version: "1.4.7"
 
                 force group: "com.qas", name: "proweb", version: "4.0"
+                            
+                force group: "com.wordnik", name: "swagger-annotations_${scalaBaseVersion}", version: "$swaggerVersion"
+                force group: "com.wordnik", name: "swagger-core_${scalaBaseVersion}", version: "$swaggerVersion"
+                force group: "com.wordnik", name: "swagger-jaxrs_${scalaBaseVersion}", version: "$swaggerVersion"                
+                force group: "com.wordnik", name: "swagger-jersey-jaxrs_${scalaBaseVersion}", version: "$swaggerVersion"
+                force group: "com.wordnik", name: "swagger-jersey2-jaxrs_${scalaBaseVersion}", version: "$swaggerVersion"
+                force group: "com.wordnik", name: "swagger-oauth2-server_${scalaBaseVersion}", version: "$swaggerVersion"
+                force group: "com.wordnik", name: "swagger-scala-servlet_${scalaBaseVersion}", version: "$swaggerVersion"
+                force group: "com.wordnik", name: "swagger-servlet_${scalaBaseVersion}", version: "$swaggerVersion"
 
                 force group: "com.yammer.metrics", name: "metrics-annotation", version: "$yammerMetricsVersion"
                 force group: "com.yammer.metrics", name: "metrics-core", version: "$yammerMetricsVersion"
@@ -458,6 +469,10 @@ allprojects {
                 force group: "org.powermock", name: "powermock-mockito-release-full", version: "$powermockVersion"
 
                 force group: "org.quartz-scheduler", name: "quartz", version: "2.2.1"
+
+                force group: "org.scala-lang", name: "scala-library", version: "$scalaVersion"
+                force group: "org.scala-lang", name: "scala-reflect", version: "$scalaVersion"
+                force group: "org.scala-lang", name: "scalap", version: "$scalaVersion"
 
                 force group: "org.slf4j", name: "jcl-over-slf4j", version: "$slf4jVersion"
                 force group: "org.slf4j", name: "slf4j-api", version: "$slf4jVersion"
