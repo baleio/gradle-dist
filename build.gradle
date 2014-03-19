@@ -13,7 +13,13 @@ group = "com.thpii.gradle"
 ext {
     // Gradle version to use as template for
     // the custom Gradle distribution.
+    gradleFilename = "gradle"
     gradleVersion = "1.11"
+    gradleClassifier = "bin"
+    gradleExtension = "zip"
+    gradleDistributionBaseUrl = "http://services.gradle.org/distributions"
+
+    companyName = "thpii"
 }
  
 // Extra configuration to store
@@ -24,13 +30,17 @@ configurations {
 }
 
 task wrapper(type: Wrapper) {
-    distributionUrl = "http://services.gradle.org/distributions/gradle-$project.gradleVersion-bin.zip"
+    distributionUrl = "$gradleDistributionBaseUrl/$gradleFilename-$gradleVersion-$gradleClassifier.$gradleExtension"
 }
  
 task downloadGradle(type: DownloadGradle) {
     description "Download Gradle version from Gradle distributions website"
  
+    gradleFilename project.gradleFilename
     gradleVersion project.gradleVersion
+    gradleClassifier project.gradleClassifier
+    gradleExtension project.gradleExtension
+    gradleDownloadBase = project.gradleDistributionBaseUrl
     destinationDir file("$buildDir/gradle-downloads")
 }
  
@@ -38,8 +48,8 @@ task companyGradleZip(type: Zip, dependsOn: downloadGradle) {
     description "Add extra files to company Gradle distribution"
  
     // Name for company Gradle ZIP distribution.
-    baseName = "thpii-gradle"
-    classifier = "bin"
+    baseName = "$companyName-$gradleFilename"
+    classifier = project.gradleClassifier
  
     from zipTree(downloadGradle.destinationFile)
     into("${downloadGradle.distributionNameBase}") {
@@ -72,14 +82,24 @@ uploadCompanyGradle {
  
 class DownloadGradle extends DefaultTask {
     @Input
-    String gradleVersion
- 
+    String gradleFilename
+
     @Input
-    File destinationDir
+    String gradleVersion
+
+    @Input
+    String gradleClassifier
+
+    @Input
+    String gradleExtension
  
     @Input
     String gradleDownloadBase = "http://services.gradle.org/distributions"
  
+    @Input
+    File destinationDir
+
+
     @TaskAction
     doDownloadGradle() {
         destinationFile.bytes = new URL(downloadUrl).bytes
@@ -90,11 +110,11 @@ class DownloadGradle extends DefaultTask {
     }
  
     String getDistributionNameBase() {
-        "gradle-$gradleVersion"
+        "$gradleFilename-$gradleVersion"
     }
  
     String getDownloadFileName() {
-        "$distributionNameBase-bin.zip"
+        "$distributionNameBase-$gradleClassifier.$gradleExtension"
     }
  
     @OutputFile
