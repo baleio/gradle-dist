@@ -4,7 +4,7 @@ def forks = Math.max(2, (int) (Runtime.runtime.availableProcessors() / 2))
 
 allprojects {
     tasks.withType(Test) {
-          jvmArgs "-Xmx512m -XX:MaxPermSize=512m"
+          //jvmArgs "-Xmx512m -XX:MaxPermSize=512m"
 
           if (!project.hasProperty('skipParallelTests')) {
               maxParallelForks = forks

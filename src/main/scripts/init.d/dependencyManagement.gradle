@@ -1,5 +1,4 @@
 
-
 allprojects {
     ext {
         activemqVersion = "5.9.0"

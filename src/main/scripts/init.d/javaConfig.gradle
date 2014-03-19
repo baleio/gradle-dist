@@ -1,0 +1,18 @@
+
+allprojects {
+    afterEvaluate {
+        if (plugins.hasPlugin("java")) {
+            sourceCompatibility = 1.7
+            targetCompatibility = 1.7
+
+            // set encoding for all java files to UTF-8
+            compileJava {
+                options.encoding = "UTF-8"  
+            }
+            
+            compileTestJava {
+                options.encoding = "UTF-8"
+            }
+        }
+    }
+}
