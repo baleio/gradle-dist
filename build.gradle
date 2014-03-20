@@ -4,6 +4,9 @@
 apply plugin: "base"
 apply plugin: "maven"
  
+// This is needed in case of downloading over SSL
+System.setProperty("jsse.enableSNIExtension", "false")
+
 // Version is the version of the
 // company Gradle. This can be independent
 // of the Gradle version.
