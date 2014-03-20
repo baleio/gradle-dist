@@ -1,0 +1,65 @@
+
+allprojects {
+    System.setProperty("jsse.enableSNIExtension", "false")
+
+    ext {
+        checkstyleConfigUrl = "https://raw.githubusercontent.com/jasonchaffee/checkstyle-config/master/src/main/config/checkstyle.xml"
+        checkstyleSupressionsUrl = "https://raw.githubusercontent.com/jasonchaffee/checkstyle-config/master/src/main/config/checkstyle-suppressions.xml"
+    }
+    
+    afterEvaluate { project ->
+        def javaProject = project.plugins.hasPlugin("java")
+
+        def checkstyleConfigFile = new File("$buildDir/checkstyle/checkstyle.xml")
+        def checkstyleSupressionsFile = new File("$buildDir/checkstyle/checkstyle-suppressions.xml")
+
+        def checkstyleProps = new HashMap<String, Object>()
+        checkstyleProps.put("checkstyle.suppressions.file", checkstyleSupressionsFile)
+
+        if (javaProject) {
+            // Add Checkstyle plugin.
+            project.apply plugin: "checkstyle"
+    
+            checkstyle.configFile = checkstyleConfigFile
+            checkstyle.configProperties = checkstyleProps
+
+            // Task to download common Checkstyle configuration file
+            task downloadCheckstyleConfig(type: DownloadFile) {
+                description = "Download company checkstyle configuration file"
+ 
+                src = project.checkstyleConfigUrl
+                dest = checkstyleConfigFile
+            }
+
+            // Task to download common Checkstyle suppresions file
+            task downloadCheckstyleSuppressions(type: DownloadFile) {
+                description = "Download company checkstyle suppressions file"
+ 
+                src = project.checkstyleSupressionsUrl
+                dest = checkstyleSupressionsFile
+            }
+
+ 
+            // For each Checkstyle task we make sure
+            // the company Checkstyle configuration is
+            // first downloaded.
+            tasks.withType(Checkstyle) {
+                it.dependsOn "downloadCheckstyleConfig", "downloadCheckstyleSuppressions"
+            }
+        }
+    }
+}
+ 
+class DownloadFile extends DefaultTask {
+    @Input
+    String src
+ 
+    @OutputFile
+    File dest
+ 
+    @TaskAction
+    def downloadFile() {
+        dest.bytes = new URL(src).bytes
+    }
+}
+
