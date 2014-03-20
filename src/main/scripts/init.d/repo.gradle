@@ -3,9 +3,11 @@ import org.gradle.api.artifacts.repositories.ArtifactRepository
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
 
-def companyRepoUrl = new URI(System.properties["companyRepoUrl"])
-
 allprojects {
+    ext {
+        companyRepoUrl = new URI("$companyRepositoryUrl")
+    }
+
     repositories { 
        def mavenLocalUrl = mavenLocal().url
        
