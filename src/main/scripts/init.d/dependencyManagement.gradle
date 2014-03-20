@@ -118,6 +118,9 @@ allprojects {
                 force group: "com.mchange", name: "c3p0", version: "0.9.2.1"                
                 force group: "com.mindprod", name: "base64", version: "1.6"
                 force group: "com.mockrunner", name: "mockrunner-jdbc", version: "1.0.0"
+
+                force group: "com.puppycrawl.tools", name: "checkstyle", version: "5.7"
+
                 force group: "com.rabbitmq", name: "amqp-client", version: "3.2.4"
 
                 force group: "com.sun.jersey", name: "jersey-client", version: "$jerseyOneVersion"
@@ -174,6 +177,8 @@ allprojects {
                 force group: "commons-logging", name: "commons-logging-api", version: "1.1"
                 force group: "commons-pool", name: "commons-pool", version: "1.6"
                 force group: "commons-net", name: "commons-net", version: "3.3"
+
+                force group: "de.undercouch", name: "gradle-download-task", version: "0.5"
 
                 force group: "dom4j", name: "dom4j", version: "1.6.1"
                 force group: "freemarker", name: "freemarker", version: "2.3.15"
