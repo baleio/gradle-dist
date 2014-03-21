@@ -52,6 +52,7 @@ allprojects {
                 force group: "asm", name: "asm", version: "3.3.1"
                 force group: "asm", name: "asm-attrs", version: "2.2.3"
                 force group: "asm", name: "asm-commons", version: "3.3.1"
+                force group: "asm", name: "asm-tree", version: "3.3.1"
                 force group: "asm", name: "asm-util", version: "3.3.1"
                 
                 force group: "batik", name: "batik", version: "1.5"
@@ -106,6 +107,8 @@ allprojects {
                 force group: "com.google.inject.extensions", name: "guice-multibindings", version: "$guiceVersion"
                 force group: "com.google.inject.extensions", name: "guice-servlet", version: "$guiceVersion"
 
+                force group: "com.google.code.findbugs", name: "findbugs", version: "2.0.3"
+                force group: "com.google.code.findbugs", name: "findbugs-annotations", version: "2.0.3"
                 force group: "com.google.code.findbugs", name: "jsr305", version: "2.0.3"
     
                 force group: "com.googlecode.json-simple", name: "json-simple", version: "1.1.1"
@@ -248,6 +251,7 @@ allprojects {
                 force group: "javax.xml.stream", name: "stax-api", version: "1.0-2"
                 
                 force group: "jaxen", name: "jaxen", version: "1.1.4"
+                force group: "jdepend", name: "jdepend", version: "2.9.1"
                 force group: "jline", name: "jline", version: "2.11"
                 force group: "joda-time", name: "joda-time", version: "2.3"
                 force group: "junit", name: "junit", version: "4.11"
