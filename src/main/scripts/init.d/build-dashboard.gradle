@@ -1,0 +1,8 @@
+
+allprojects {
+    afterEvaluate { project ->
+        // Add build-dashboard plugin.
+        project.apply plugin: "build-dashboard"
+    }
+}
+

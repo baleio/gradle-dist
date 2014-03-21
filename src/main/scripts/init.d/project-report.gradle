@@ -1,0 +1,8 @@
+
+allprojects {
+    afterEvaluate { project ->
+        // Add project-report plugin.
+        project.apply plugin: "project-report"
+    }
+}
+

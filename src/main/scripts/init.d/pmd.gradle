@@ -1,0 +1,8 @@
+
+allprojects {
+    afterEvaluate { project ->
+        // Add pmd plugin.
+        project.apply plugin: "pmd"
+    }
+}
+

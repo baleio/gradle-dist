@@ -1,0 +1,8 @@
+
+allprojects {
+    afterEvaluate { project ->
+        // Add jdepend plugin.
+        project.apply plugin: "jdepend"
+    }
+}
+
