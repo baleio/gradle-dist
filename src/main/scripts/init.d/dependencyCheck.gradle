@@ -5,7 +5,7 @@ allprojects {
             resolutionStrategy {
                  // fail eagerly on version conflict (includes transitive dependencies)
                  // e.g. multiple different versions of the same dependency (group and name are equal)
-                 if (!project.hasProperty('skipFailOnVersionConflict')) {
+                 if (!project.hasProperty("skipFailOnVersionConflict") && !project.hasProperty("ignoreFailures")) {
                      failOnVersionConflict()
                  } else {
                      logger.info("Skipping fail on version conflict.")

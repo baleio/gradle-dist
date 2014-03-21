@@ -3,6 +3,13 @@ allprojects {
     afterEvaluate { project ->
         // Add findbugs plugin.
         project.apply plugin: "findbugs"
+
+        findbugs {
+            if (project.hasProperty("ignoreFailures") || project.hasProperty("findbugIgnoreFailures")) {
+                ignoreFailures = true
+                logger.info("Ignoring failures for findbugs")
+            } 
+        }
     }
 }
 

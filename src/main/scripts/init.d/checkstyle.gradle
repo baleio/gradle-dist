@@ -20,8 +20,15 @@ allprojects {
             // Add Checkstyle plugin.
             project.apply plugin: "checkstyle"
     
-            checkstyle.configFile = checkstyleConfigFile
-            checkstyle.configProperties = checkstyleProps
+            checkstyle {
+                configFile = checkstyleConfigFile
+                configProperties = checkstyleProps
+            
+                if (project.hasProperty("ignoreFailures") || project.hasProperty("checkstyleIgnoreFailures")) {
+                     ignoreFailures = true
+                     logger.info("Ignoring failures for checkstyle")
+                 } 
+            }
 
             // Task to download common Checkstyle configuration file
             task downloadCheckstyleConfig(type: DownloadFile) {
