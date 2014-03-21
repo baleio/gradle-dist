@@ -251,19 +251,34 @@ allprojects {
                 force group: "javax.xml.stream", name: "stax-api", version: "1.0-2"
                 
                 force group: "jaxen", name: "jaxen", version: "1.1.4"
+                
                 force group: "jdepend", name: "jdepend", version: "2.9.1"
+                
                 force group: "jline", name: "jline", version: "2.11"
+                
                 force group: "joda-time", name: "joda-time", version: "2.3"
+                
                 force group: "junit", name: "junit", version: "4.11"
+                
                 force group: "jxl", name: "jxl", version: "2.6.10"
+                
                 force group: "log4j", name: "log4j", version: "1.2.17"
                 force group: "log4j", name: "apache-log4j-extras", version: "1.2.17"
+                
                 force group: "mysql", name: "mysql-connector-java", version: "5.1.29"
+
                 force group: "net.htmlparser.jericho", name: "jericho-html", version: "3.3"
+                
+                force group: "net.saliman", name: "gradle-cobertura-plugin", version: "2.2.4"
+
                 force group: "net.sf.ehcache", name: "ehcache", version: "2.8.1"
                 force group: "net.sf.flexjson", name: "flexjson", version: "3.2"
+                
+                force group: "net.sourceforge.cobertura", name: "cobertura", version: "2.0.3"
                 force group: "net.sourceforge.saxon", name: "saxon", version: "9.1.0.8"
+
                 force group: "ognl", name: "ognl", version: "3.0.8"
+                
                 force group: "opencsv", name: "opencsv", version: "1.8"
                 
                 force group: "org.antlr", name: "antlr", version: "3.5.1"
