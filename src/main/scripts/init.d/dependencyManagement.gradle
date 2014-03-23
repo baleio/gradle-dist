@@ -94,6 +94,10 @@ allprojects {
                 force group: "com.fasterxml.jackson.jaxrs", name: "jackson-jaxrs-xml-provider", version: "$jacksonVersion"
                 force group: "com.fasterxml.jackson.module", name: "jackson-module-jaxb-annotations", version: "$jacksonVersion"
                 force group: "com.fasterxml.jackson.module", name: "jackson-module-afterburner", version: "$jacksonVersion"
+              
+                force group: "com.github.ben-manes", name:"gradle-versions-plugin", version: "0.4"
+ 
+                force group: "com.github.samueltbrown", name:"gradle-cucumber-plugin", version: "0.5"
                 
                 force group: "com.github.slugify", name: "slugify", version: "2.1.2" 
                                
@@ -269,7 +273,7 @@ allprojects {
 
                 force group: "net.htmlparser.jericho", name: "jericho-html", version: "3.3"
                 
-                force group: "net.saliman", name: "gradle-cobertura-plugin", version: "2.2.4"
+                force group: "net.saliman", name: "gradle-cobertura-plugin", version: "2.2.2"
 
                 force group: "net.sf.ehcache", name: "ehcache", version: "2.8.1"
                 force group: "net.sf.flexjson", name: "flexjson", version: "3.2"

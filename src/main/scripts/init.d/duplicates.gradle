@@ -1,0 +1,23 @@
+allprojects {
+
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+    
+        dependencies {
+            classpath group: "com.github.goldin.plugins.gradle", name:"duplicates", version: "0.3.1"
+        }
+    }
+        
+    afterEvaluate { project ->
+        // Add duplicates plugin.
+        project.apply plugin: "duplicates"
+         
+        duplicates {
+            fail = false
+            verbose = false
+        }
+    }
+}
+

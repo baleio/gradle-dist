@@ -1,0 +1,18 @@
+allprojects {
+
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+    
+        dependencies {
+            classpath group: "com.github.ben-manes", name:"gradle-versions-plugin", version: "0.4"
+        }
+    }
+        
+    afterEvaluate { project ->
+        // Add versions plugin.
+        project.apply plugin: "versions"
+    }
+}
+
