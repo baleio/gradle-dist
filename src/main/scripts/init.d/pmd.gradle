@@ -1,14 +1,16 @@
 
 allprojects {
     afterEvaluate { project ->
-        // Add pmd plugin.
-        project.apply plugin: "pmd"
+        if (!project.hasProperty("skipChecks") && !project.hasProperty("skipPmd")) {
+            // Add pmd plugin.
+            project.apply plugin: "pmd"
 
-        pmd {
-            if (project.hasProperty("ignoreFailures") || project.hasProperty("pmdIgnoreFailures")) {
-                ignoreFailures = true
-                logger.info("Ignoring failures for pmd")
-            } 
+            pmd {
+                if (project.hasProperty("ignoreFailures") || project.hasProperty("pmdIgnoreFailures")) {
+                    ignoreFailures = true
+                    logger.info("Ignoring failures for pmd")
+                }
+            }
         }
     }
 }

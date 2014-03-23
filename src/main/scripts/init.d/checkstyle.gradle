@@ -17,42 +17,43 @@ allprojects {
         checkstyleProps.put("checkstyle.suppressions.file", checkstyleSupressionsFile)
 
         if (javaProject) {
-            // Add Checkstyle plugin.
-            project.apply plugin: "checkstyle"
+             if (!project.hasProperty("skipChecks") && !project.hasProperty("skipCheckstyle")) {
+                // Add Checkstyle plugin.
+                project.apply plugin: "checkstyle"
     
-            checkstyle {
-                configFile = checkstyleConfigFile
-                configProperties = checkstyleProps
+                checkstyle {
+                    configFile = checkstyleConfigFile
+                    configProperties = checkstyleProps
             
-                if (project.hasProperty("ignoreFailures") || project.hasProperty("checkstyleIgnoreFailures")) {
-                     ignoreFailures = true
-                     logger.info("Ignoring failures for checkstyle")
-                 } 
-            }
+                    if (project.hasProperty("ignoreFailures") || project.hasProperty("checkstyleIgnoreFailures")) {
+                        ignoreFailures = true
+                        logger.info("Ignoring failures for checkstyle")
+                     } 
+                }
 
-            // Task to download common Checkstyle configuration file
-            task downloadCheckstyleConfig(type: DownloadFile) {
-                description = "Download company checkstyle configuration file"
+                // Task to download common Checkstyle configuration file
+                task downloadCheckstyleConfig(type: DownloadFile) {
+                    description = "Download company checkstyle configuration file"
  
-                src = project.checkstyleConfigUrl
-                dest = checkstyleConfigFile
-            }
+                    src = project.checkstyleConfigUrl
+                    dest = checkstyleConfigFile
+                }
 
-            // Task to download common Checkstyle suppresions file
-            task downloadCheckstyleSuppressions(type: DownloadFile) {
-                description = "Download company checkstyle suppressions file"
+                // Task to download common Checkstyle suppresions file
+                task downloadCheckstyleSuppressions(type: DownloadFile) {
+                    description = "Download company checkstyle suppressions file"
  
-                src = project.checkstyleSupressionsUrl
-                dest = checkstyleSupressionsFile
-            }
+                    src = project.checkstyleSupressionsUrl
+                    dest = checkstyleSupressionsFile
+                }
 
- 
-            // For each Checkstyle task we make sure
-            // the company Checkstyle configuration is
-            // first downloaded.
-            tasks.withType(Checkstyle) {
-                it.dependsOn "downloadCheckstyleConfig", "downloadCheckstyleSuppressions"
-            }
+                // For each Checkstyle task we make sure
+                // the company Checkstyle configuration is
+                // first downloaded.
+                tasks.withType(Checkstyle) {
+                    it.dependsOn "downloadCheckstyleConfig", "downloadCheckstyleSuppressions"
+                }
+             }
         }
     }
 }

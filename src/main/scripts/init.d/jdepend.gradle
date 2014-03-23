@@ -1,8 +1,10 @@
 
 allprojects {
     afterEvaluate { project ->
-        // Add jdepend plugin.
-        project.apply plugin: "jdepend"
+        if (!project.hasProperty("skipChecks") && !project.hasProperty("skipJdepend")) {
+            // Add jdepend plugin.
+            project.apply plugin: "jdepend"
+        }
     }
 }
 
