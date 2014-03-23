@@ -439,7 +439,6 @@ allprojects {
 
                 force group: "org.glassfish.jersey.security", name: "oauth2-client", version: "$jerseyVersion"
 
-
                 force group: "org.hibernate", name: "hibernate-c3p0", version: "$hibernateVersion"
                 force group: "org.hibernate", name: "hibernate-core", version: "$hibernateVersion"
                 force group: "org.hibernate", name: "hibernate-ehcache", version: "$hibernateVersion"
@@ -461,6 +460,7 @@ allprojects {
 
                 force group: "org.mortbay.jetty", name: "jetty", version: "6.1.26"
                 force group: "org.mortbay.jetty", name: "jetty-management", version: "6.1.26"
+                force group: "org.mortbay.jetty", name: "jetty-util", version: "6.1.26"
                 
                 force group: "org.mybatis", name: "mybatis", version:"3.2.5"
                 force group: "org.mybatis", name: "mybatis-ehcache", version:"1.0.0"
