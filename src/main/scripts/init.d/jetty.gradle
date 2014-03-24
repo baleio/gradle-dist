@@ -1,0 +1,11 @@
+allprojects {
+    afterEvaluate { project ->
+        def warProject = project.plugins.hasPlugin("war")
+
+        if (warProject) {
+            // Add jetty plugin.
+            project.apply plugin: "jetty"
+        }
+    }
+}
+
