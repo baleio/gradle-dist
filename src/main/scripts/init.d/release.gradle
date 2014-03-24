@@ -1,0 +1,22 @@
+allprojects {
+
+    buildscript {
+        repositories {
+            maven { url "$companyRepositoryUrl" }
+        }
+    
+        dependencies {
+            classpath group: "com.github.townsfolk", name:"gradle-release", version: "1.2"
+        }
+    }
+        
+    afterEvaluate { project ->
+        // Add release plugin.
+        project.apply plugin: "release"
+         
+        createReleaseTag {
+            dependsOn uploadArchives
+        }
+    }
+}
+
