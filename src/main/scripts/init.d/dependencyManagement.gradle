@@ -95,11 +95,13 @@ allprojects {
                 force group: "com.fasterxml.jackson.module", name: "jackson-module-jaxb-annotations", version: "$jacksonVersion"
                 force group: "com.fasterxml.jackson.module", name: "jackson-module-afterburner", version: "$jacksonVersion"
               
-                force group: "com.github.ben-manes", name:"gradle-versions-plugin", version: "0.4"
+                force group: "com.github.ben-manes", name:"gradle-versions-plugin", version: "0.5-beta-1"
  
                 force group: "com.github.samueltbrown", name:"gradle-cucumber-plugin", version: "0.5"
                 
-                force group: "com.github.slugify", name: "slugify", version: "2.1.2" 
+                force group: "com.github.slugify", name: "slugify", version: "2.1.2"
+                
+                force group: "com.github.townsfolk", name:"gradle-release", version: "1.2" 
                                
                 force group: "com.google.collections", name: "google-collections", version: "1.0"
                 force group: "com.google.guava", name: "guava", version: "16.0.1"
