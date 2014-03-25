@@ -3,6 +3,11 @@ allprojects {
     afterEvaluate { project ->
         // Add idea plugin.
         project.apply plugin: "idea"
+
+        cleanIdeaWorkspace {
+            group = "IDE"
+            description = "Cleans IDEA workspace."
+        }
     }
 }
 

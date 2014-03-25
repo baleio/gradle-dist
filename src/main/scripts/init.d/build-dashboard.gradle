@@ -3,6 +3,12 @@ allprojects {
     afterEvaluate { project ->
         // Add build-dashboard plugin.
         project.apply plugin: "build-dashboard"
+
+
+        buildDashboard {
+            group = "Reporting"
+            description = "Generates build dashboard of reports."
+        }
     }
 }
 
