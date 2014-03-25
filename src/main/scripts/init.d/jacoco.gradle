@@ -1,0 +1,38 @@
+allprojects {        
+    afterEvaluate { project ->
+        def javaProject = project.plugins.hasPlugin("java")
+
+        if (javaProject) {
+            if (!project.hasProperty("skipChecks") && !project.hasProperty("skipJacoco")) {
+                // Add cobertura plugin.
+                project.apply plugin: "jacoco"
+
+                jacoco {
+                    append = false
+                    dumpOnExit = false
+                    classDumpFile = file("$buildDir/jacoco/classdump")
+                    //failonviolation = true
+
+                    //if (project.hasProperty("ignoreFailures") || project.hasProperty("jacocoIgnoreFailures")) {
+                    //    failonviolation = false
+                    //    logger.info("Ignoring failures for jacoco")
+                    //}
+                }
+
+                jacocoTestReport {
+                    group = "Reporting"
+                    description = "Generates JaCoCo coverage report."
+                    classDirectories = files(sourceSets.main.output)
+                    sourceDirectories = files(sourceSets.main)
+                        
+                    reports {
+                        csv.enabled false
+                        html.enabled true
+                        xml.enabled true
+                    }
+                }
+            }
+        }
+    }
+}
+
