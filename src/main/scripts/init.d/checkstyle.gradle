@@ -3,8 +3,8 @@ allprojects {
     System.setProperty("jsse.enableSNIExtension", "false")
 
     ext {
-        checkstyleConfigUrl = "https://raw.githubusercontent.com/jasonchaffee/checkstyle-config/master/src/main/config/checkstyle.xml"
-        checkstyleSupressionsUrl = "https://raw.githubusercontent.com/jasonchaffee/checkstyle-config/master/src/main/config/checkstyle-suppressions.xml"
+        checkstyleConfigUrl = "https://raw.githubusercontent.com/baleio/checkstyle-config/master/src/main/config/checkstyle.xml"
+        checkstyleSupressionsUrl = "https://raw.githubusercontent.com/baleio/checkstyle-config/master/src/main/config/checkstyle-suppressions.xml"
     }
     
     afterEvaluate { project ->
