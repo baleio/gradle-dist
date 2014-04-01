@@ -9,7 +9,7 @@ allprojects {
         avroVersion = "1.7.6"
         batikVersion = "1.6-1"
         bouncycastleVersion = "1.50"
-        camelVersion = "2.12.3"
+        camelVersion = "2.13.0"
         cglibVersion = "3.1"
         cumcumberVersion = "1.1.5"
         cxfVersion = "2.7.10"
