@@ -31,7 +31,7 @@ allprojects {
         scalaBaseVersion = "2.10"
         scalaVersion = "2.10.3"
         slf4jVersion = "1.7.6"
-        springVersion = "4.0.2.RELEASE"
+        springVersion = "4.0.3.RELEASE"
         springIntegrationVersion = "3.0.1.RELEASE"
         springSecurityVersion = "3.2.1.RELEASE"
         springSecurityOauthVersion = "1.0.5.RELEASE"
@@ -250,7 +250,7 @@ allprojects {
                 force group: "javax.validation", name: "validation-api", version: "1.1.0.Final"
                 
                 force group: "javax.ws.rs", name: "jsr311-api", version: "1.1.1"
-                force group: "javax.ws.rs", name: "javax.ws.rs-api", version: "2.0"
+                force group: "javax.ws.rs", name: "javax.ws.rs-api", version: "2.0-m10"
                 
                 force group: "javax.xml", name: "jsr173", version: "1.0"
                 force group: "javax.xml.bind", name: "jaxb-api", version: "2.2.11"
