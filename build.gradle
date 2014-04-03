@@ -2,7 +2,7 @@
 // support and build<Configuration>
 // and upload<Configuration> tasks.
 apply plugin: "base"
-apply plugin: "maven"
+apply plugin: "maven-publish"
  
 // This is needed in case of downloading over SSL
 System.setProperty("jsse.enableSNIExtension", "false")
@@ -25,13 +25,6 @@ ext {
     companyName = "baleio"
 }
  
-// Extra configuration to store
-// company Gradle ZIP artifact and
-// use for uploading.
-configurations {
-    companyGradle   
-}
-
 task wrapper(type: Wrapper) {
     distributionUrl = "$gradleDistributionBaseUrl/$gradleFilename-$gradleVersion-$gradleClassifier.$gradleExtension"
 }
@@ -65,24 +58,24 @@ task companyGradleZip(type: Zip, dependsOn: downloadGradle) {
     }   
 }
  
-artifacts {
-    companyGradle companyGradleZip
-}
+publishing {
+    publications {
+        maven(MavenPublication) {
+             artifact(companyGradleZip) {
+                 extension "zip"
+                 classifier "$gradleClassifier"
+             }     
+        }
+    }
 
-// Configure upload task for company
-// Gradle distribution ZIP.
-uploadCompanyGradle {
     repositories {
-        //add project.repositories.fileRepo
-        mavenDeployer {
-            repository(url: "$repoUrl") {
-                 authentication(userName: "$repoUsername", password: "$repoPassword")
-       	    }
+        maven {
+            url "$repoUrl"        
         }
     }
 }
- 
- 
+
+
 class DownloadGradle extends DefaultTask {
     @Input
     String gradleFilename
