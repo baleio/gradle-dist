@@ -70,7 +70,16 @@ publishing {
 
     repositories {
         maven {
-            url "$repoUrl"        
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+
+            if (project.version.endsWith("-SNAPSHOT")) {
+                url "$snapshotRepoUrl"
+            } else {
+                url "$repoUrl"
+            }
         }
     }
 }
