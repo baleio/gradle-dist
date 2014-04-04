@@ -1,17 +1,23 @@
 
 allprojects {
-    System.setProperty("jsse.enableSNIExtension", "false")
+    System.setProperty("jsse.enableSNIExtension", "false")    
+    
+    configurations {
+        checkstyleConfig
+    }
+
+    dependencies {
+        checkstyleConfig group: "com.github.baleio.checkstyle", name: "checkstyle-config", version: "1.0.0-SNAPSHOT"
+    }
 
     ext {
-        checkstyleConfigUrl = "https://raw.githubusercontent.com/baleio/checkstyle-config/master/src/main/config/checkstyle.xml"
-        checkstyleSupressionsUrl = "https://raw.githubusercontent.com/baleio/checkstyle-config/master/src/main/config/checkstyle-suppressions.xml"
+        checkstyleConfigDir = "$buildDir/checkstyle"
+        checkstyleConfigFile = new File("$checkstyleConfigDir/checkstyle.xml")
+        checkstyleSupressionsFile = new File("$checkstyleConfigDir/checkstyle-suppressions.xml")
     }
     
     afterEvaluate { project ->
         def javaProject = project.plugins.hasPlugin("java")
-
-        def checkstyleConfigFile = new File("$buildDir/checkstyle/checkstyle.xml")
-        def checkstyleSupressionsFile = new File("$buildDir/checkstyle/checkstyle-suppressions.xml")
 
         def checkstyleProps = new HashMap<String, Object>()
         checkstyleProps.put("checkstyle.suppressions.file", checkstyleSupressionsFile)
@@ -31,27 +37,20 @@ allprojects {
                      } 
                 }
 
-                // Task to download common Checkstyle configuration file
-                task downloadCheckstyleConfig(type: DownloadFile) {
-                    description = "Download company checkstyle configuration file"
- 
-                    src = project.checkstyleConfigUrl
-                    dest = checkstyleConfigFile
-                }
+                task extractCheckstyleConfig(type: Copy) {
+                    dependsOn project.configurations.checkstyleConfig
 
-                // Task to download common Checkstyle suppresions file
-                task downloadCheckstyleSuppressions(type: DownloadFile) {
-                    description = "Download company checkstyle suppressions file"
- 
-                    src = project.checkstyleSupressionsUrl
-                    dest = checkstyleSupressionsFile
+                    from { // use of closure defers evaluation until execution time
+                        project.configurations.checkstyleConfig.collect { project.zipTree(it) }
+                    } 
+                    into "$checkstyleConfigDir"
                 }
 
                 // For each Checkstyle task we make sure
                 // the company Checkstyle configuration is
                 // first downloaded.
                 tasks.withType(Checkstyle) {
-                    it.dependsOn "downloadCheckstyleConfig", "downloadCheckstyleSuppressions"
+                    it.dependsOn "extractCheckstyleConfig"
                 }
              }
         }
