@@ -2,7 +2,7 @@ allprojects {
 
     buildscript {
         repositories {
-            maven { url "$companyRepositoryUrl" }
+            maven { url "$repoUrl" }
         }
     
         dependencies {
