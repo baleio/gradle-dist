@@ -1,7 +1,6 @@
-// Base plugin adds configuration
-// support and build<Configuration>
-// and upload<Configuration> tasks.
+
 apply plugin: "base"
+apply plugin: "maven"
 apply plugin: "maven-publish"
  
 // This is needed in case of downloading over SSL
@@ -57,12 +56,33 @@ task companyGradleZip(type: Zip, dependsOn: downloadGradle) {
         // distribution ZIP file.
     }   
 }
- 
+
+artifacts {
+    archives(companyGradleZip) {
+        extension "$gradleExtension"
+        classifier "$gradleClassifier"
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "$repoUrl") {
+                authentication(userName: "$repoUsername", password: "$repoPassword")
+            }
+
+            snapshotRepository(url: "$snapshotRepoUrl") {
+                authentication(userName: "$repoUsername", password: "$repoPassword")
+            }
+        }
+    }
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
              artifact(companyGradleZip) {
-                 extension "zip"
+                 extension "$gradleExtension"
                  classifier "$gradleClassifier"
              }     
         }
