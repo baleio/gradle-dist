@@ -1,0 +1,59 @@
+import org.gradle.api.artifacts.ResolvedDependency
+import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
+
+allprojects {
+    afterEvaluate { project ->
+        project.apply plugin: "maven"
+
+        def javaProject = project.plugins.hasPlugin("java")
+        def warProject = project.plugins.hasPlugin("war")
+
+        artifacts {
+            if (warProject) {
+                archives war
+            } else if (javaProject) {
+                archives jar
+            }
+
+        }
+
+        uploadArchives {
+            repositories {
+                mavenDeployer {
+                    repository(url: "$repoUrl") {
+                        authentication(userName: "$repoUsername", password: "$repoPassword")
+                    }
+
+                    snapshotRepository(url: "$snapshotRepoUrl") {
+                        authentication(userName: "$repoUsername", password: "$repoPassword")
+                    }
+                }
+            }
+        }
+
+        // Need to modify generated pom to have resolved versions for dependencies
+        Map resolvedVersionMap = new HashMap()
+
+        Set<ResolvedDependency> resolvedDependencies = configurations.runtime.getResolvedConfiguration().getFirstLevelModuleDependencies()
+        resolvedDependencies.addAll(configurations.testRuntime.getResolvedConfiguration().getFirstLevelModuleDependencies())
+
+        resolvedDependencies.each {
+            resolvedVersionMap.put(new DefaultModuleIdentifier(it.getModuleGroup(), it.getModuleName()), it.getModuleVersion())
+        }
+
+        def installer = install.repositories.mavenInstaller
+        def deployer = uploadArchives.repositories.mavenDeployer
+
+        [installer, deployer]*.pom*.whenConfigured {pom ->
+            pom.dependencies.each {dep ->
+
+                def id = new DefaultModuleIdentifier(dep.groupId, dep.artifactId)
+                String versionResult = resolvedVersionMap.get(id)
+
+                if (versionResult != null) {
+                    dep.version = versionResult
+                }
+            }
+        }
+    }
+}

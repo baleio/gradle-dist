@@ -1,0 +1,68 @@
+
+import org.gradle.api.artifacts.ResolvedDependency
+import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
+
+allprojects {
+    afterEvaluate { project ->
+        project.apply plugin: "maven-publish"
+
+        def javaProject = project.plugins.hasPlugin("java")
+        def warProject = project.plugins.hasPlugin("war")
+
+
+        publishing {
+            publications {
+                maven(MavenPublication) {
+                    Map resolvedVersionMap = new HashMap()
+
+                    Set<ResolvedDependency> resolvedDependencies = configurations.runtime.getResolvedConfiguration().getFirstLevelModuleDependencies()
+                    resolvedDependencies.addAll(configurations.testRuntime.getResolvedConfiguration().getFirstLevelModuleDependencies())
+
+                    resolvedDependencies.each {
+                        resolvedVersionMap.put(new DefaultModuleIdentifier(it.getModuleGroup(), it.getModuleName()), it.getModuleVersion())
+                    }
+
+                    pom.withXml {
+                        Node root = asNode()
+
+                        root?.dependencies?.dependency.each { Node dep ->
+                            def group = dep.groupId.text()
+                            def name = dep.artifactId.text()
+
+                            def id = new DefaultModuleIdentifier(group, name)
+                            String versionResult = resolvedVersionMap.get(id)
+
+                            if (versionResult != null) {
+                                dep.version[0].value = versionResult
+                            }
+
+//                            System.out.println("### id=" + id)
+//                            System.out.println("### version=" + versionResult)
+                        }
+                    }
+
+                    if (warProject) {
+                        from components.web
+                    } else if (javaProject) {
+                        from components.java
+                    }
+                }
+            }
+
+            repositories {
+                maven {
+                    credentials {
+                        username "$repoUsername"
+                        password "$repoPassword"
+                    }
+
+                    if (project.version.endsWith("-SNAPSHOT")) {
+                        url "$snapshotRepoUrl"
+                    } else {
+                        url "$repoUrl"
+                    }
+                }
+            }
+        }
+    }
+}
