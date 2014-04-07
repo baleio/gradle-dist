@@ -43,7 +43,7 @@ task companyGradleZip(type: Zip, dependsOn: downloadGradle) {
     description "Add extra files to company Gradle distribution"
  
     // Name for company Gradle ZIP distribution.
-    baseName = "$companyName-$gradleFilename"
+    baseName = project.name
     classifier = project.gradleClassifier
  
     from zipTree(downloadGradle.destinationFile)
