@@ -1,0 +1,25 @@
+allprojects {
+
+    buildscript {
+        repositories {
+            maven { url "$repoUrl" }
+            maven { url "http://repository-uncommon-configuration.forge.cloudbees.com/release" }
+        }
+
+        dependencies {
+            classpath group: "org.github.mansur.scalastyle", name: "gradle-scalastyle-plugin_2.10", version: "0.4.0"
+        }
+    }
+
+    afterEvaluate { project ->
+        def scalaProject = project.plugins.hasPlugin("scala")
+
+        if (scalaProject) {
+            project.apply plugin: "scalaStyle"
+
+            scalaStyle {
+                includeTestSourceDirectory = true
+            }
+        }
+    }
+}

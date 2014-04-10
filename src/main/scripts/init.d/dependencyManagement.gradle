@@ -30,6 +30,7 @@ allprojects {
         POWERMOCK_VERSION = "1.5.4"
         SCALA_BASE_VERSION = "2.10"
         SCALA_VERSION = "2.10.4"
+        SCALASTYLE_VERSION = "0.4.0"
         SLF4J_VERSION = "1.7.6"
         SPRING_VERSION = "4.0.3.RELEASE"
         SPRING_INTEGRATION_VERSION = "3.0.1.RELEASE"
@@ -150,6 +151,10 @@ allprojects {
 
                 force group: "com.thoughtworks.paranamer", name: "paranamer", version: "2.6"
                 force group: "com.thoughtworks.xstream", name: "xstream", version: "1.4.7"
+
+                force group: "com.typesafe.akka", name: "akka-actor", version: "$AKKA_VERSION"
+                force group: "com.typesafe.akka", name: "akka-remote", version: "$AKKA_VERSION"
+                force group: "com.typesafe.akka", name: "akka-slf4j", version: "$AKKA_VERSION"
 
                 force group: "com.qas", name: "proweb", version: "4.0"
                             
@@ -428,6 +433,8 @@ allprojects {
                 force group: "org.freemarker", name: "freemarker", version: "$FREEMARKER_VERSION"
                 force group: "org.freemarker", name: "freemarker-gae", version: "$FREEMARKER_VERSION"
 
+                force group: "org.github.mansur.scalastyle", name: "gradle-scalastyle-plugin_$SCALA_BASE_VERSION", version: "$SCALASTYLE_VERSION"
+
                 force group: "org.glassfish.jersey.connector", name: "jersey-jetty-connector", version: "$JERSEY_VERSION"
 
                 force group: "org.glassfish.jersey.core", name: "jersey-client", version: "$JERSEY_VERSION"
@@ -501,7 +508,8 @@ allprojects {
 
                 force group: "org.scala-lang", name: "scala-library", version: "$SCALA_VERSION"
                 force group: "org.scala-lang", name: "scala-reflect", version: "$SCALA_VERSION"
-                force group: "org.scala-lang", name: "scalap", version: "$SCALA_VERSION"
+
+                force group: "org.scalastyle", name: "scalastyle_$SCALA_BASE_VERSION", version: "$SCALASTYLE_VERSION"
 
                 force group: "org.slf4j", name: "jcl-over-slf4j", version: "$SLF4J_VERSION"
                 force group: "org.slf4j", name: "slf4j-api", version: "$SLF4J_VERSION"
