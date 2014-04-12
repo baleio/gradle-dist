@@ -1,0 +1,20 @@
+
+allprojects {
+    afterEvaluate { project ->
+        def groovyProject = project.plugins.hasPlugin("groovy")
+        def grailsProject = project.plugins.hasPlugin("grails")
+
+        if (groovyProject || grailsProject) {
+            if (!project.hasProperty("skipChecks") && !project.hasProperty("skipCodenarc")) {
+                project.apply plugin: "codenarc"
+
+                codenarc {
+                    if (project.hasProperty("ignoreFailures") || project.hasProperty("codenarcIgnoreFailures")) {
+                        ignoreFailures = true
+                        logger.info("Ignoring failures for codenarc")
+                    }
+                }
+            }
+        }
+    }
+}
